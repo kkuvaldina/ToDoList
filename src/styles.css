@@ -1,0 +1,23 @@
+body {
+  text-align: center;
+  font-family: "Shadows Into Light", cursive;
+  background-color: #85c7f2;
+  color: #4c4c4c;
+  padding: 30px 0;
+}
+
+h1 {
+  font-family: "Shadows Into Light", cursive;
+  margin: 30px 0 30px 0;
+  font-size: 3em !important;
+}
+
+input[type="text"] {
+  font-family: "Shadows Into Light", cursive !important;
+  font-size: 2em !important;
+}
+
+i.big.icon,
+i.big.icons {
+  margin-right: 15px;
+}
