@@ -8,16 +8,25 @@ class App extends React.Component {
 
   handleSubmit = newTask => {
     const tasks = [
-      { text: newTask, id: `${uuid.v4()}`, taskCompleted: false }, ...this.state.tasks
+      { text: newTask, id: `${uuid.v4()}`, taskCompleted: false },
+      ...this.state.tasks
     ];
     tasks.sort((a, b) => a.taskCompleted - b.taskCompleted);
     this.setState({ tasks });
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   };
+
+  componentDidMount() {
+    var storedTasks = JSON.parse(localStorage.getItem("tasks"));
+    this.setState({ tasks: storedTasks });
+  }
 
   handleDelete = id => {
     const tasks = this.state.tasks.filter(task => task.id !== id);
     tasks.sort((a, b) => a.taskCompleted - b.taskCompleted);
     this.setState({ tasks });
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   };
 
   handleComplete = id => {
@@ -28,15 +37,11 @@ class App extends React.Component {
       }
       return task;
     });
-    
+
     tasks.sort((a, b) => a.taskCompleted - b.taskCompleted);
-
     this.setState({ tasks });
-
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   };
-
-
-  
 
   render() {
     console.log(this.state.tasks);
@@ -49,7 +54,6 @@ class App extends React.Component {
             key={task.id}
             onDelete={this.handleDelete}
             onComplete={this.handleComplete}
-            
           />
         ))}
       </div>
