@@ -18,7 +18,9 @@ class App extends React.Component {
 
   componentDidMount() {
     var storedTasks = JSON.parse(localStorage.getItem("tasks"));
-    this.setState({ tasks: storedTasks });
+    if (storedTasks) {
+      this.setState({ tasks: storedTasks });
+    }
   }
 
   handleDelete = id => {
